@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Book Info</title>
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'app1/style.css' %}">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+	<h3 class="welcome">Welcome {{user.first}}</h2>
+	<a href="/books" class="home">Home</a>
+	<a href="/clear">Log Out</a><br>
+	<div id="leftI">
+		<h1 id="bookt">{{book.title}}</h1>
+		<p>Written by: <span>{{book.author}}</span></p>
+		<p> Added by: {{book.user.first}}</p>
+		<p> Added on: {{book.created_at}}</p>
+		<p> Last updated on {{book.updated_at}}</p>
+		<p>Description </p><p id="description">{{book.desc}}</p>
+		{% if user == book.user %}
+		<br><form action="/edit/{{book.id}}">
+			{% csrf_token %}
+			<input type="submit" id="infoupdate" value="Update">
+		</form>
+		<form action="/delete/{{book.id}}" method="POST">
+			{% csrf_token %}
+			<input type="submit" value="Delete">
+		</form>
+		{% endif %}
+	</div>
+	<div id="rightI">
+		<h2>Uses Who Like This Book:</h2>
+		<ul>
+			{% for favorite in favorites %}
+			<li>{{favorite.user.first}} {{favorite.user.last}}</li>
+			{% if favorite.user == user %}
+			<form action="/unfavor/{{book.id}}" method="POST">
+				{% csrf_token %}
+				<input type="submit" value="Unfavorite">
+			</form>
+			{% endif %}
+			{% endfor %}
+			</ul>
+			
+			{% if not favor %}
+			<form action="/favor/{{book.id}}" method="POST">
+				{% csrf_token %}
+				<input type="submit" value="Add to Favorites" id="ilink">
+			</form>
+			{% endif %}
+
+		
+	</div>
+</body>
+</html>

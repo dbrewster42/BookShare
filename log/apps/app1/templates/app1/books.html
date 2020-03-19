@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Favorite Books</title>
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'app1/style.css' %}">
+	 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+	<h3 class="welcome">Welcome {{user.first}}</h3>
+	<a href="/clear">Log Out</a><br>
+	<div id="left">
+		<h2 class="head">Add a Favorite Book</h2>
+		{% if messages %}
+		{% for message in messages %}
+			<li>{{message}}</li>
+			{% endfor %}
+			{% endif %}
+		<form action="/add" method="POST">
+			{% csrf_token %}
+		  <div class="form-group">
+		    <label for="title">Title</label>
+		    <input type="text" class="form-control" name="title">	    
+		  </div>
+		  <div class="form-group">
+		    <label for="author">Author</label>
+		    <input type="text" class="form-control" name="author">
+		  </div>
+		  <div class="form-group">
+		    <label for="desc">Description</label>
+		     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="desc"></textarea>		    
+		     <small class="form-text text-muted">Please give a succinct summary of the book</small>
+		  </div>		 
+		  <button type="submit" class="btn btn-primary">Add</button>
+	</form>	
+		
+	</div>
+	<div id="center">
+
+		<h2 class="head">All Books</h2><br>
+		{% for book in otherBooks %}
+		<a href="/books/{{book.id}}">{{ book.title }}</a><br>
+		<span>{{ book.author }}</span>
+		<p>(added by {{book.user.first}} {{book.user.last}})</p>		
+		<form action="/favor/{{book.id}}" method="POST">
+			{% csrf_token %}
+			<input type="submit" value="Add to Favorites" id="link">
+		</form>
+		<br><br><br>		
+		{% endfor %}
+		
+		
+	</div>
+	<div id="right">
+		<h2 class="head">My Favorites</h2><br>
+		{% for b in myBooks %}
+		<a href="/books/{{b.id}}">{{ b.title }}</a><br>
+		<span>Written by {{ b.author }} </span>
+		<p>(added by {{b.user.first}} {{b.user.last}})</p>		
+		<br><br><br>		
+		{% endfor %}
+		{% for f in myfavorites %}
+		<p>{{f.user.first}}</p>
+		<p>{{f.book.title}}</p>
+		{% endfor %}
+
+		
+	</div>
+
+</body>
+</html>

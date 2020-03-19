@@ -1,0 +1,116 @@
+#registration{
+	display: inline-block;
+	width: 500px;
+	margin-left: 10px;
+}
+
+#login{
+	display: inline-block;
+	width: 400px;
+	vertical-align: top;
+}
+.email{
+	margin-left: 32px;
+}
+.password{
+	margin-left: 10px;
+}
+
+#desc {
+	height: 40px;
+}
+#left {
+	display: inline-block;
+	width: 350px;
+	vertical-align: top;
+	margin-left: 10px;
+	margin-top: 30px;
+}
+#leftI {
+	display: inline-block;
+	width: 350px;
+	padding: 10px;
+	vertical-align: top;
+	margin-left: 10px;
+	margin-top: 30px;
+	background-image: url(books.jfif);
+	color: white;
+}
+li {
+	color: white;
+}
+#center {
+	display: inline-block;
+	width: 310px;
+	margin-top: 30px;
+	vertical-align: top;
+}
+#right 	{
+	display: inline-block;
+	width: 310px;
+	margin-top: 30px;
+	vertical-align: top;
+}
+#rightI 	{
+	display: inline-block;
+	width: 310px;
+	margin-top: 30px;
+	vertical-align: top;
+	margin-left: 50px;
+	background-image: url(moon.jpg);	
+}
+h2 {
+	display: inline-block;
+	width: 300px;
+}
+span {
+	font-style: italic;
+}
+#bookt {
+	border: 3px solid blue;
+	padding: 3px;
+}
+#description {
+	/*border: 3px solid darkred;*/
+	height: 120px;
+	width: 280px;
+	margin-left: 20px;
+	display: inline-block;
+	padding: 5px;
+	text-overflow: scroll;
+}
+form {
+	display: inline-block;
+}
+#link {
+	text-decoration: underline;
+	background-color: white;
+	border: none;
+	color: blue;
+}
+#ilink {
+	text-decoration: underline;
+	background-color: black;
+	border: none;
+	color: white;
+	margin-left: 20px;
+}
+.welcome {
+	margin-right: 360px; 
+	display: inline-block;
+	margin-left: 50px;
+}
+.head {
+	margin-bottom: 20px;
+	color: red;
+	text-decoration: underline;
+}
+.auth {
+	text-decoration: bold;
+}
+.home {
+	margin-right: 10px;
+}
+#infoupdate{
+	margin-left: 70px;
+}

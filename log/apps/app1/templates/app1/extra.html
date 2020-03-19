@@ -1,0 +1,29 @@
+ <div class="form-group form-check">
+		    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+		    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+		  </div>aria-describedby="emailHelp"
+
+
+		  <form action="/add" method="POST">
+			{% csrf_token %}
+			Title <input type="text" name="title" id="title"><br>
+			Description <input type="text" name="desc" id="desc"><br>
+			<input type="submit" value="Add">
+		</form>
+
+
+
+
+
+if request.user.is_authenticated:
+		num = request.session['userid']
+		thisUser = User.objects.get(id=num)
+		myfavorites = Favorite.objects.filter(user=thisUser)
+		context = {
+			"user" : thisUser,
+			"otherBooks" : Book.objects.exclude(favorites=myfavorites),
+			"myBooks" : Book.objects.filter(favorites=myfavorites)			
+		}
+		return render (request, 'app1/books.html', context)
+	else:		
+		return redirect('/')
