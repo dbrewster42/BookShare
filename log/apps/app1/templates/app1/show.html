@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'app1/style.css' %}">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+	<h3 class="welcome">Welcome {{user.first}}</h2>
+	<a href="/books" class="home">Home</a>
+	<a href="/clear">Log Out</a><br>
+	<div id="centerS">
+		<h1>{{them.first}} {{them.last}}'s Favorite Books</h1>
+		<table class="table table-bordered table-dark">
+		  <thead>
+		    <tr>		      
+		      <th scope="col">Book</th>
+		      <th scope="col">Author</th>
+		      <th scope="col">Info</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		  	{% for book in themBooks %}
+		    <tr>
+		    	{% if book in myBooks %}
+		      <th class="same" scope="row">{{book.title}}</th>
+		      	{% else %}
+		      <th scope="row">{{book.title}}</th>	
+		      	{% endif %}
+		      <td>{{book.author}}</td>
+		      <td><a href="/books/{{book.id}}">View</a></td>
+		      
+		    </tr>
+		    {% endfor %}   
+		  </tbody>
+		</table>
+		<span>Shared favorite books are in red</span>
+	</div>
+	<div id="leftR">
+
+</body>
+</html>

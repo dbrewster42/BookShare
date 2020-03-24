@@ -53,16 +53,12 @@
 	</div>
 	<div id="right">
 		<h2 class="head">My Favorites</h2><br>
-		{% for b in myBooks %}
+		{% for b in Books %}
 		<a href="/books/{{b.id}}">{{ b.title }}</a><br>
 		<span>Written by {{ b.author }} </span>
-		<p>(added by {{b.user.first}} {{b.user.last}})</p>		
-		<br><br><br>		
-		{% endfor %}
-		{% for f in myfavorites %}
-		<p>{{f.user.first}}</p>
-		<p>{{f.book.title}}</p>
-		{% endfor %}
+		<p>(added by {{b.user.first}} {{b.user.last}})</p>
+		
+		{% endfor %}		
 
 		
 	</div>

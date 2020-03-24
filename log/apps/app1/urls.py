@@ -13,6 +13,6 @@ urlpatterns = [
 	url(r'^unfavor/(?P<number>\d+)$', views.unfavor),
 	url(r'^delete/(?P<number>\d+)$', views.delete),
 	url(r'^update/(?P<number>\d+)$', views.update),
-	url(r'^edit/(?P<number>\d+)$', views.edit)
-
+	url(r'^edit/(?P<number>\d+)$', views.edit),
+	url(r'^users/(?P<number>\d+)$', views.show)
 ]

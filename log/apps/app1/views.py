@@ -50,10 +50,25 @@ def books(request):
 		context = {
 			"user" : thisUser,
 			"myfavorites" : myfavorites,
-			"otherBooks" : Book.objects.exclude(favorites=myfavorites),
-			"myBooks" : Book.objects.filter(favorites=myfavorites)			
+			"otherBooks" : Book.objects.exclude(favorites=myfavorites),			
+			"Books" : Book.objects.filter(favorites__user=thisUser)		
 		}
 		return render (request, 'app1/books.html', context)
+
+def show(request, number):
+	if 'userid' not in request.session:
+		return redirect('/')
+	else:
+		num = request.session['userid']	
+		otherUser = User.objects.get(id=number)
+		user = 	User.objects.get(id=num)
+		context = {
+			'user' : user,
+			'them' : otherUser,
+			'themBooks' : Book.objects.filter(favorites__user=otherUser),
+			"myBooks" : Book.objects.filter(favorites__user=user)	
+		} 
+		return render(request, 'app1/show.html', context)
 
 def add(request):
 	errors = Book.objects.basic_validator(request.POST)
@@ -130,3 +145,4 @@ def update(request, number):
 		book.desc = request.POST['desc']
 		book.save()
 		return redirect('/books')
+

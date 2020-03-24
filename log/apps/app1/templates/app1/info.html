@@ -32,11 +32,11 @@
 		<h2>Uses Who Like This Book:</h2>
 		<ul>
 			{% for favorite in favorites %}
-			<li>{{favorite.user.first}} {{favorite.user.last}}</li>
+			<li><a class="white" href="/users/{{favorite.user.id}}">{{favorite.user.first}} {{favorite.user.last}}</a></li>
 			{% if favorite.user == user %}
 			<form action="/unfavor/{{book.id}}" method="POST">
 				{% csrf_token %}
-				<input type="submit" value="Unfavorite">
+				<input type="submit" value="Unfavorite" id="ilink">
 			</form>
 			{% endif %}
 			{% endfor %}
