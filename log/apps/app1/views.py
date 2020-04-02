@@ -50,7 +50,7 @@ def books(request):
 		context = {
 			"user" : thisUser,
 			"myfavorites" : myfavorites,
-			"otherBooks" : Book.objects.exclude(favorites=myfavorites),			
+			"otherBooks" : Book.objects.exclude(favorites__user=thisUser),			
 			"Books" : Book.objects.filter(favorites__user=thisUser)		
 		}
 		return render (request, 'app1/books.html', context)

@@ -4,7 +4,19 @@
 	<title>Favorite Books</title>
 	{% load static %}
 	<link rel="stylesheet" type="text/css" href="{% static 'app1/style.css' %}">
-	 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+	
+	<script>
+		$(document).ready(function(){	
+			$('#link').click(function(){
+				alert("You have added this book to your list of favorites!");
+			}); 
+		})
+
+	</script>
+
 </head>
 <body>
 	<h3 class="welcome">Welcome {{user.first}}</h3>
@@ -41,12 +53,12 @@
 		{% for book in otherBooks %}
 		<a href="/books/{{book.id}}">{{ book.title }}</a><br>
 		<span>{{ book.author }}</span>
-		<p>(added by {{book.user.first}} {{book.user.last}})</p>		
+		<p class="space">(added by {{book.user.first}} {{book.user.last}})</p>		
 		<form action="/favor/{{book.id}}" method="POST">
 			{% csrf_token %}
 			<input type="submit" value="Add to Favorites" id="link">
 		</form>
-		<br><br><br>		
+		<br><br>		
 		{% endfor %}
 		
 		
